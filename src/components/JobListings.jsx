@@ -11,7 +11,7 @@ function JobsListings({ isHome = false }) {
 		const fetchJobs = async () => {
 			const url = isHome ? "/api/jobs?_limit=3" : "/api/jobs";
 
-			setLoading(false);
+			setLoading(true);
 			try {
 				const res = await fetch(url);
 				const data = await res.json();
