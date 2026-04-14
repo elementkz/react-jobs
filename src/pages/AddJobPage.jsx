@@ -1,6 +1,16 @@
-import React from "react";
+import { useState } from "react";
 
 function AddJobPage() {
+	const [title, setTitle] = useState("");
+	const [description, setDescription] = useState("");
+	const [type, setType] = useState("");
+	const [location, setLocation] = useState("");
+	const [salary, setSalary] = useState("");
+	const [companyName, setCompanyName] = useState("");
+	const [companyDescription, setCompanyDescription] = useState("");
+	const [contactEmail, setContactEmail] = useState("");
+	const [contactPhone, setcontactPhone] = useState("");
+
 	return (
 		<>
 			<section className="bg-indigo-50">
