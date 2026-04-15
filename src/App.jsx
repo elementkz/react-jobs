@@ -4,7 +4,7 @@ import {
 	createRoutesFromElements,
 	RouterProvider,
 } from "react-router-dom";
-
+import { toast } from "react-toastify";
 import MainLayout from "./layouts/MainLayout";
 
 import HomePage from "./pages/HomePage";
