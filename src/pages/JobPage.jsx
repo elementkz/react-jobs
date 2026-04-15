@@ -1,10 +1,22 @@
-import { useParams, useLoaderData } from "react-router-dom";
+import { useParams, useLoaderData, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-function JobPage() {
+function JobPage({ deleteJob }) {
 	const { id } = useParams();
 	const job = useLoaderData();
+	const navigate = useNavigate();
+
+	function onDeleteClick(id, name, company) {
+		const confirm = window.confirm(
+			`Are you sure you want to delete "${name}" by ${company}`,
+		);
+
+		if (!confirm) return;
+		deleteJob(id);
+		return navigate("/jobs");
+	}
+
 	return (
 		<>
 			<section>
@@ -13,8 +25,7 @@ function JobPage() {
 						to="/jobs"
 						className="text-indigo-500 hover:text-indigo-600 flex items-center"
 					>
-						<FaArrowLeft classNameName="mr-2" /> Back to Job
-						Listings
+						<FaArrowLeft className="mr-2" /> Back to Job Listings
 					</Link>
 				</div>
 			</section>
@@ -88,7 +99,16 @@ function JobPage() {
 								>
 									Edit Job
 								</Link>
-								<button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block">
+								<button
+									className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block cursor-pointer"
+									onClick={() =>
+										onDeleteClick(
+											job.id,
+											job.title,
+											job.company.name,
+										)
+									}
+								>
 									Delete Job
 								</button>
 							</div>
